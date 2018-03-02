@@ -1,0 +1,194 @@
+<html>
+	<head>
+		<title>
+			Tablero de ajedrez
+		</title>
+		<!--
+		Dentro de nuestras etiquetas <style></style> se verá 
+		representado todos los estilos que tendrá nuestro sitio.
+		-->
+		<style>
+		/* Le daremos estilos a nuestras etiquetas <div> pero exactamente
+		 a las que sean hijos de otro div para esto utilizamos el caracter
+		  ">" que representa padre > hijo. */
+			#tablero div > div{
+				width: 50px;
+				height: 50px;
+				border-color: black;
+				border-style: solid;
+				border-width: 1px;
+				display: table-cell;
+				}
+			#tablero > div{
+				display: table-row;
+			}
+			/* :nth-child(odd-even): Impar e incluso son palabras clave que se pueden usar
+			 para unir elementos secundarios cuyo índice es impar o par
+			 en este caso lo usamos para pintar las casillas del tablero.
+			*/
+			#tablero  div:nth-child(even) > div:nth-child(odd){
+				background-color: #E8810C;
+				padding: 2pt;
+				size: 300pt;
+			}
+			#tablero div:nth-child(odd) > div:nth-child(even){
+				background-color: #E8810C;
+			}
+			/*Cuando pase el click por una de las casillas esta cambiará de color,
+			 con la propiedad hover se logra este efecto sobre el div del tablero.
+			 la caracteristica !important permite resaltar esta propiedad 
+			 sobre las demas aplicadas sobre los div
+			*/
+			#tablero div > div:hover{
+				background-color: #E8D278 !important;
+			}
+			#tablero div > div{
+				font-size: 30pt;
+				text-align: center;
+				vertical-align: middle;
+			}
+	
+		</style>
+		
+  		<!--
+  		Dentro de la etiqueta script irá todo el código de JavaScript de nuestra app
+  		-->
+			<script>
+			
+function esNegra(f){
+	var negras='♖♘♗♕♔♟';
+	return negras.indexOf(f) >= 0;
+}
+			
+var seleccionado=false;
+var ficha;
+
+  /*La propiedad target devuelve el elemento que desencadenó 
+  el evento, junto con innerText retorna el texto del elemento*/
+function manejarEvento( ev ){
+	console.log(ev.target.innerText);
+	console.log( seleccionado );
+	console.log( ficha );
+	
+	if( seleccionado ){
+		// Mover la ficha a esta posicion
+		ev.target.innerText = ficha.innerText;
+		seleccionado = false;
+		
+		// Pista para encontrar un elemento por su id
+		var lasnegras = document.getElementById( "negras" );
+		
+		
+	} else {
+		// Seleccionar la ficha
+		seleccionado = true;
+		ficha = ev.target;
+		
+		// Pista para cambiar el color
+		ficha.style.backgroundColor
+		
+	}
+}
+	  </script>
+	  
+	</head>
+	<body>
+	<!--
+		En está sesión se crearán cada una de las casillas
+		de nuestro tablero en este caso 64 <div>.
+	-->
+	
+	<div id="blancas" ></div>
+	
+	<div id="tablero" onclick = "manejarEvento(event)">
+		<div id = "fila" >
+		<!--
+		Cada <div> contiene un caracter Unicode con el hexadecimal
+		que representa cada una de las figuras del ajedrez.
+		-->
+			<div>&#9814;</div>
+			<div>&#9816;</div>
+			<div>&#9815;</div>
+			<div>&#9813;</div>
+			<div>&#9812;</div>
+			<div>&#9815;</div>
+			<div>&#9816;</div>
+			<div>&#9814;</div>
+		</div>
+		<div id = "fila2">
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+			<div>&#9817;</div>
+		</div>
+		<div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div id = "fila3" >
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+			<div>&#9823;</div>
+		</div>
+		<div id = "fila4" >
+			<div>&#9820;</div>
+			<div>&#9822;</div>
+			<div>&#9821;</div>
+			<div>&#9819;</div>
+			<div>&#9818;</div>
+			<div>&#9821;</div>
+			<div>&#9822;</div>
+			<div>&#9820;</div>
+		</div>
+	</div>
+	
+		<div id="negras" ></div>
+
+	
+	</body>
+</html>
